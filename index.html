@@ -90,6 +90,29 @@ rbenv rehash
 bundle
 </code></pre>
 
+<p>Kullanılan <code>gem</code>ler:</p>
+
+<div class="highlight"><pre><span class="n">source</span> <span class="s2">"http://rubygems.org"</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'rake'</span>
+  <span class="n">gem</span> <span class="s1">'rack'</span>
+  <span class="n">gem</span> <span class="s1">'jekyll'</span>
+  <span class="n">gem</span> <span class="s1">'rdiscount'</span>
+  <span class="n">gem</span> <span class="s1">'pygments.rb'</span>
+  <span class="n">gem</span> <span class="s1">'RedCloth'</span>
+  <span class="n">gem</span> <span class="s1">'haml'</span><span class="p">,</span> <span class="s1">'&gt;= 3.1'</span>
+  <span class="n">gem</span> <span class="s1">'compass'</span><span class="p">,</span> <span class="s1">'&gt;= 0.11'</span>
+  <span class="n">gem</span> <span class="s1">'rubypants'</span>
+  <span class="n">gem</span> <span class="s1">'rb-fsevent'</span><span class="p">,</span> <span class="s2">"~&gt; 0.9.1"</span>
+  <span class="n">gem</span> <span class="s1">'stringex'</span>
+  <span class="n">gem</span> <span class="s1">'liquid'</span><span class="p">,</span> <span class="s1">'2.2.2'</span>
+  <span class="n">gem</span> <span class="s1">'multi_json'</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">'sinatra'</span><span class="p">,</span> <span class="s1">'1.2.6'</span>
+</pre></div>
+
 <p>Test etmek için:</p>
 
 <pre><code>rake generate
@@ -367,9 +390,9 @@ yardım alabilirsiniz.</p>
 
 <p><code>RakeFile</code>ı açın ve şu satırları kendinize göre ayarlayın:</p>
 
-<div class="highlight"><pre><span class="n">ssh_user</span>       <span class="o">=</span> <span class="s2">"user@domain.com"</span>    <span class="c1"># uzak makineye ssh yaparken kullandığınız yöntem</span>
-<span class="n">document_root</span>  <span class="o">=</span> <span class="s2">"~/website.com/"</span>     <span class="c1"># uzak makinedeki web lokasyonu. Eğer /srv/www/website.com/ ise buraya aynen yazın.</span>
-<span class="n">rsync_delete</span>   <span class="o">=</span> <span class="kp">true</span>                 <span class="c1"># esas kaynak hep source/ olacak ve bunu public/'e senkronize edecek.</span>
+<div class="highlight"><pre><span class="n">ssh_user</span> <span class="o">=</span> <span class="s2">"user@domain.com"</span>          <span class="c1"># uzak makineye ssh yaparken kullandığınız yöntem</span>
+<span class="n">document_root</span> <span class="o">=</span> <span class="s2">"~/website.com/"</span>      <span class="c1"># uzak makinedeki web lokasyonu. Eğer /srv/www/website.com/ ise buraya aynen yazın.</span>
+<span class="n">rsync_delete</span> <span class="o">=</span> <span class="kp">true</span>                   <span class="c1"># esas kaynak hep source/ olacak ve bunu public/'e senkronize edecek.</span>
 <span class="n">deploy_default</span> <span class="o">=</span> <span class="s2">"rsync"</span>              <span class="c1"># `rake deploy` deyince bu default olarak çalışacak</span>
 </pre></div>
 
@@ -384,6 +407,22 @@ bir dosya oluşturun ve içine dosyaları yazın:</p>
 <pre><code>some-file.txt
 some-directory/
 *.mp4
+</code></pre>
+
+<h3>Alt Folder / Dizin'e Yükleme</h3>
+
+<p>Orijinal <a href="http://octopress.org/docs/deploying/subdir/">döküman burada</a>.</p>
+
+<pre><code>rake set_root_dir[proje/kök/dizin]
+
+# geri almak için
+rake set_root_dir[/]
+
+# _config.yml
+url: http://siteniz.com/alt/dizin
+
+# Rakefile (rsync ile kullanıyorsanız)
+document_root = "~/yoursite.com/your/path"
 </code></pre>
 
 <hr><h2>Blog ve Sayfa</h2>
@@ -498,6 +537,8 @@ rake watch
 
 <p>Örnekler <a href="http://octopress.org/docs/blogging/code/">orijinal</a> sayfadan alınmıştır.</p>
 
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-backtick.png" alt="Backtick Code Block"></p>
+
 <pre><code>``` [language] [title] [url] [link text]
 code snippet
 ```
@@ -524,8 +565,9 @@ end
 
 <h3>HTML5 Video Tag</h3>
 
-<p>Örnekler <a href="http://octopress.org/docs/plugins/video-tag/">orijinal</a> sayfadan alınmıştır.
-<a href="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-video.png">Ekran görüntüsü için tıklayın</a>.</p>
+<p>Örnekler <a href="http://octopress.org/docs/plugins/video-tag/">orijinal</a> sayfadan alınmıştır.</p>
+
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-video.png" alt="HTML5 Video Tag"></p>
 
 <pre><code>{% video url/to/video [width height] [url/to/poster] %}
 {% video http://www.site.com/video.mp4 [genişlik yükseklik] [http://www.site.com/poster-resmi.png] %}
@@ -537,6 +579,8 @@ end
 
 <p>Örnekler <a href="http://octopress.org/docs/plugins/image-tag/">orijinal</a> sayfadan alınmıştır.</p>
 
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-img.png" alt="Image Tag"></p>
+
 <pre><code>{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
 {% img [css classlar] http://www.site.com/resim.jpg [genişlik] [yükseklik] [başlık [alt]] %}
 
@@ -546,9 +590,11 @@ end
 {% img right http://placekitten.com/300/500 150 250 'Place Kitten #4' 'An image of a very cute kitten' %}
 </code></pre>
 
-<h3>Block quote</h3>
+<h3>Blockquote</h3>
 
 <p>Örnekler <a href="http://octopress.org/docs/plugins/blockquote/">orijinal</a> sayfadan alınmıştır.</p>
+
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-bquo.png" alt="Blockquote"></p>
 
 <pre><code>{% blockquote [author[, source]] [link] [source_link_title] %}
 Quote string
@@ -575,6 +621,8 @@ Every interaction is both precious and an opportunity to delight.
 
 <p>Örnekler <a href="http://octopress.org/docs/plugins/pullquote/">orijinal</a> sayfadan alınmıştır.</p>
 
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-pullquo.png" alt="Pull quote"></p>
+
 <pre><code>{% pullquote %}
 Surround your paragraph with the pull quote tags. Then when you come to
 the text you want to pull, {" surround it like this "} and that's all there is to it.
@@ -584,6 +632,8 @@ the text you want to pull, {" surround it like this "} and that's all there is t
 <h3>Code Blocks</h3>
 
 <p>Örnekler <a href="http://octopress.org/docs/plugins/codeblock/">orijinal</a> sayfadan alınmıştır.</p>
+
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-codeblocks.png" alt="Code Blocks"></p>
 
 <pre><code>{% codeblock [title] [lang:language] [url] [link text] %}
 code snippet
@@ -614,6 +664,8 @@ var arr2 = new Array(element0, element1, ..., elementN);
 <h3>Gist Tag</h3>
 
 <p>Herhangi bir <code>gist</code>i entegre edebilirsiniz.</p>
+
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-gist.png" alt="Gist"></p>
 
 <pre><code>{% gist GIST_ID %}
 
@@ -827,6 +879,8 @@ bakabilirsiniz.</p>
 
 <p>Aynı <strong>Gist</strong> gibi, <a href="http://jsfiddle.net/">jsFiddle</a> kaynağı da ekleyebilirsiniz.</p>
 
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-jsfiddle.png" alt="jsfiddle"></p>
+
 <pre><code>{% jsfiddle shorttag [tabs] [skin] [height] [width] %}
 {% jsfiddle ccWP7 %}
 
@@ -837,9 +891,14 @@ bakabilirsiniz.</p>
 
 <p>Sitenize <a href="http://vimeo.com">Vimeo</a> videoları eklemenize yarar.</p>
 
+<p><img src="https://raw.github.com/vigo/octopress/master/source/screen_shots/octopress-tr-plugin-vimeo.png" alt="vimeo"></p>
+
 <pre><code># http://vimeo.com/52177751
 {% vimeo 52177751 800 600 information %}
+{% vimeo 52177751 800 600 %}
 </code></pre>
+
+<p><code>information</code> video ile ilgili bilgileri getirir.</p>
 
 <hr><h2>Lisans</h2>
 
