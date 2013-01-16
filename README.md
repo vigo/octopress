@@ -123,8 +123,7 @@ recent_posts: 5                                             # Son 5 post
 excerpt_link: "Devamı &rarr;"                               # Excerpt kullanılınca, "Devamı >" linki
 titlecase: false                                            # Kontrol edilmesi açısında off
 default_asides: [
-    custom/asides/freesoftwarefoundation.html,              # sağ kolonda çıkacaklar
-    custom/asides/hakkimda.html,
+    custom/asides/hakkimda.html,                            # sağ kolonda çıkacaklar
     asides/recent_posts.html,
     asides/tag_cloud.html,
     asides/categories.html,
