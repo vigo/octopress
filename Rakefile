@@ -112,6 +112,7 @@ task :new_post, :title do |t, args|
     post.puts "description: \"Açıklama\""
     post.puts "keywords: \"kelime1, kelime2\""
     post.puts "# asides: []"
+    post.puts "# author:"
     post.puts "---"
     post.puts "Kısa açıklama..."
     post.puts "<!-- more -->"
@@ -153,6 +154,7 @@ task :new_page, :filename do |t, args|
       page.puts "description: \"Açıklama\""
       page.puts "keywords: \"kelime1, kelime2\""
       page.puts "# asides: []"
+      page.puts "# author:"
       page.puts "---"
     end
   else
