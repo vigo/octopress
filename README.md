@@ -1,5 +1,7 @@
 # Octopress Türkçe
 
+[![Build Status](https://travis-ci.org/vigo/octopress.png)](https://travis-ci.org/vigo/octopress.png)
+
 ![Octopress Türkçe - Anasayfa][scr-001]  
 
 Octopress [Jekyll][1] tabanlı blog sistemidir. [Projenin orijinali][2], [Projenin sitesi][3]
