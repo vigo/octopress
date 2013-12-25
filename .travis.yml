@@ -1,0 +1,4 @@
+language: ruby
+rvm:
+  - 1.9.2-p290
+script: bundle exec rake install; bundle exec rake generate
