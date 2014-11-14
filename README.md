@@ -13,13 +13,8 @@ Oluşturacağınız site, iPhone, iPad ve diğer mobil cihazlarla da uyumlu olac
 Kendi sitenizi yapabilmek için gerekenler:
 
 - Git
-- Ruby 1.9.2 (*RVM ya da rbenv ile kurulması tavsiye ediliyor.*)
-
-### Mac OS X (Mountain) Lion Kullanıcıları Dikkat
-OS X Lion (10.7) ile beraber değişen derleme ortamları yüzünden ilk önce eski
-`gcc` yi indirip kurmanız gerekmetedir.
-
-[https://github.com/kennethreitz/osx-gcc-installer][4]
+- Homebrew
+- Ruby 2.1.2 (*RVM ya da rbenv ile kurulması tavsiye ediliyor.*)
 
 Derleme işlemine komut satırından başlamadan önce sisteminizde `readline`
 kütüphanesinin de kurulu olması gerekiyor. Eğer kurulu değilse;
@@ -32,27 +27,15 @@ kullanarak kurabilirsiniz. Kurulum bittikten sonra lütfen `CPPFLAGS` ve
 
     brew ls readline
 
-diyebilir ve `include` `lib` folder'larına bakabilirsiniz. Sizdeki sürüm ne
-ise aşağıdaki değerleri ona göre ayarlayın:
-
-    export CPPFLAGS=-I/usr/local/Cellar/readline/6.2.4/include
-    export LDFLAGS=-L/usr/local/Cellar/readline/6.2.4/lib
-
 ve daha sonra `rbenv` ile gereken ruby'i kurun;
 
-    rbenv install 1.9.2-p290
+    CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)" rbenv install 2.1.2
     rbenv rehash
-
-ve daha sonra da;
-
-    sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/
-
-yapın...
 
 ## Kurulum
 
     gem install bundler
-    bundle
+    bundle install --path=vendor/bundle
 
 Kullanılan `gem`ler:
 
@@ -66,16 +49,17 @@ group :development do
   gem 'rdiscount'
   gem 'pygments.rb'
   gem 'RedCloth'
-  gem 'haml', '>= 3.1'
-  gem 'compass', '>= 0.11'
+  gem 'haml'
+  gem 'compass'
   gem 'rubypants'
-  gem 'rb-fsevent', "~> 0.9.1"
+  gem 'rb-fsevent'
   gem 'stringex'
-  gem 'liquid', '2.2.2'
+  gem 'liquid'
   gem 'multi_json'
+  gem 'iconv'
 end
 
-gem 'sinatra', '1.2.6'
+gem 'sinatra'
 ```
 
 Test etmek için:
